@@ -1,13 +1,21 @@
+import React from 'react';
+
+// router
+import { BrowserRouter } from "react-router-dom";
+
 // sass
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/sass/index.scss';
 
+// router
+import AppRoute from './routes/AppRoute';
+
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <h2>Hello World</h2>
-      </div>
+      <BrowserRouter>
+        <AppRoute />
+      </BrowserRouter>
     </div>
   );
 }

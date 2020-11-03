@@ -1,0 +1,9 @@
+/* Navigation */
+.navbar {padding: 0;}
+li.nav-item a {
+    color: #fff;
+    margin-right: 15px;
+    &.active {
+        color: $secondaryColor;
+    }
+} 
