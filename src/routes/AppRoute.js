@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 // pages
 import Header from '../layer/Header';
 import Home from '../pages/Home';
+import Todo from '../pages/Todo';
 import NotFound from '../pages/NotFound';
 
 
@@ -14,6 +15,7 @@ const AppRoute = () => {
             <Header />
             <Switch>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/todo' component={Todo} />
                 <Route path='*' component={NotFound} />
             </Switch>
         </Fragment>

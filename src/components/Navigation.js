@@ -9,6 +9,7 @@ const Navigation = () => {
                 <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                     <li className="nav-item">
                         <NavLink exact to="/">Home</NavLink>
+                        <NavLink exact to="/todo">Todo</NavLink>
                     </li>
                 </ul>
             </div>
