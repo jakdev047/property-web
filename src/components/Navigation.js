@@ -10,6 +10,7 @@ const Navigation = () => {
                     <li className="nav-item">
                         <NavLink exact to="/">Home</NavLink>
                         <NavLink exact to="/todo">Todo</NavLink>
+                        <NavLink exact to="/csv-file">CSV File</NavLink>
                     </li>
                 </ul>
             </div>
