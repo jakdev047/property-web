@@ -1,11 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import TodoForm from '../components/TodoForm';
 
-const Todo = () => {
-    const location = useLocation();
-    const todoList = location?.state || [];
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+const Todo = props => {
+    const [todoObj, setTodoObj] = useState([]);
+
+    useEffect(()=>{
+        if(props.todoList) {
+            localStorage.setItem('todoList',JSON.stringify(props.todoList));
+            const getJsonData = localStorage.getItem('todoList');
+            setTodoObj(JSON.parse(getJsonData));
+        }
+    },[props.todoList]);
+
     return (
         <div className="container my-3">
             <div className="row">
@@ -16,7 +23,7 @@ const Todo = () => {
                             <TodoForm />
                             <ul className="list-group list-group-flush">
                                 {
-                                    todoList.map((itm, idx) => {
+                                    todoObj && todoObj.map((itm, idx) => {
                                         return <li key={idx} className="list-group-item">{itm?.todo}</li>
                                     })
                                 }
@@ -29,4 +36,10 @@ const Todo = () => {
     )
 };
 
-export default Todo;
+const mapStateToProps = state => {
+    return {
+        todoList: state.todo.todoList,
+    }
+};
+
+export default connect(mapStateToProps)(Todo);

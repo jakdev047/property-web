@@ -1,14 +1,13 @@
-import React,{useState} from 'react';
-import { Form, Formik } from 'formik';
+import React,{} from 'react';
+import { connect } from 'react-redux';
+import {Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import FormikControl from '../components/FormikControl';
-import { useHistory } from 'react-router-dom';
+import { addTodoAction } from '../redux/actions/todo';
 
-const TodoForm = () => {
-    const history = useHistory();
-    const [todoList,setTodoList] = useState([]);
+const TodoForm = props => {
     const initialValues = {
         todo: ''
     }
@@ -18,11 +17,7 @@ const TodoForm = () => {
     const onSubmit = (values, onSubmitProps) => {
         onSubmitProps.setSubmitting(false);
         onSubmitProps.resetForm();
-        todoList.unshift(values)
-        history.push({
-            pathname: '/todo',
-            state: todoList
-        })
+        props.addTodoAction(values);
     }
     return (
         <div>
@@ -53,4 +48,16 @@ const TodoForm = () => {
     )
 };
 
-export default TodoForm;
+const mapStateToProps = state => {
+    return {
+        todoList: state.todo.todoList,
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addTodoAction: todo => dispatch(addTodoAction(todo))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodoForm);

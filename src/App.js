@@ -10,12 +10,18 @@ import './assets/sass/index.scss';
 // router
 import AppRoute from './routes/AppRoute';
 
+// store
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <AppRoute />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <AppRoute/>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
