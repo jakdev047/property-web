@@ -1,7 +1,7 @@
 import { ADD_TODO } from "../actions/type";
 
 const initialState = {
-    todoList: []
+    todoList: [{todo: 'demo'}]
 };
 
 const reducers = (state=initialState,action) => {
